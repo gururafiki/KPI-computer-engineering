@@ -1,0 +1,91 @@
+Microsoft (R) Macro Assembler Version 5.00                  9/4/16 21:16:08
+                                                             Page     1-1
+
+
+       1				; Вариант 1 
+       2				; 7 6 5 4 3 2 1 0 
+       3				; 5 4 5 0 6 7 2 1 
+       4				 
+       5 0000				code SEGMENT 
+       6					ASSUME cs:code 
+       7				 
+       8 0000				begin: 
+       9 0000  B2 66				mov dl, 01100110b 
+      10				 
+      11 0002  8A E2				mov ah, dl 
+      12 0004  80 C4 02				add ah, 00000010b 
+      13 0007  D0 EC				shr ah, 1 
+      14 0009  8A F4				mov dh, ah 
+      15				 
+      16 000B  8A E2				mov ah, dl 
+      17 000D  80 C4 04				add ah, 0000100b 
+      18 0010  B1 01				mov cl, 1 
+      19 0012  D2 EC				shr ah, cl 
+      20 0014  0A F4				or dh, ah 
+      21				 
+      22 0016  8A E2				mov ah, dl 
+      23 0018  80 C4 80				add ah, 10000000b 
+      24 001B  B1 05				mov cl, 5 
+      25 001D  D2 EC				shr ah, cl 
+      26 001F  0A F4				or dh, ah 
+      27				 
+      28 0021  8A E2				mov ah, dl 
+      29 0023  80 C4 40				add ah, 01000000b 
+      30 0026  B1 03				mov cl, 3 
+      31 0028  D2 EC				shr ah, cl 
+      32 002A  0A F4				or dh, ah 
+      33				 
+      34 002C  8A E2				mov ah, dl 
+      35 002E  80 C4 01				add ah, 00000001b 
+      36 0031  B1 04				mov cl, 4 
+      37 0033  D2 E4				shl ah, cl 
+      38 0035  0A F4				or dh, ah 
+      39				 
+      40 0037  8A E2				mov ah, dl 
+      41 0039  80 C4 20				add ah, 00100000b 
+      42 003C  0A F4				or dh, ah 
+      43 003E  B1 02				mov cl, 2 
+      44 0040  D2 E4				shl ah, cl 
+      45 0042  0A F4				or dh, ah 
+      46				 
+      47 0044  8A E2				mov ah, dl 
+      48 0046  80 C4 10				add ah, 00010000b 
+      49 0049  B1 02				mov cl, 2 
+      50 004B  D2 E4				shl ah, cl 
+      51 004D  0A F4				or dh, ah 
+      52				 
+      53 004F  B8 4C00				mov ax, 4c00h 
+      54 0052  CD 21				int 21h 
+Microsoft (R) Macro Assembler Version 5.00                  9/4/16 21:16:08
+                                                             Page     1-2
+
+
+      55 0054				code ENDS 
+      56					end begin 
+Microsoft (R) Macro Assembler Version 5.00                  9/4/16 21:16:08
+                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE . . . . . . . . . . . . . .  	0054	PARA	NONE	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+BEGIN  . . . . . . . . . . . . .  	L NEAR	0000	CODE
+
+@FILENAME  . . . . . . . . . . .  	TEXT  lab1		
+
+
+     56 Source  Lines
+     56 Total   Lines
+      4 Symbols
+
+  50676 + 465868 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors
