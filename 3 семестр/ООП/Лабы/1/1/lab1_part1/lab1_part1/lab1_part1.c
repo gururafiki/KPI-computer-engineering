@@ -94,37 +94,29 @@ char* makepal(const char *string)
 double* txt2double(const char *string, int *size)
 {
 	double *arr = NULL;
-	int *begin = string, *end = begin;
-	int len = strlen(string);
+	char *ptr = string;
+	const int len = strlen(string);
 	*size = 0;
 
-	for (int i = 0; i < len; i++)
+	do
 	{
-		end = string + i;
-
-		if (isdigit(*(string + i)))
+		if (isdigit(*ptr))
 		{
-			if (*(string + i + 1) == ';' || i + 1 == len)
-			{
-				arr = realloc(arr, ++*size * sizeof(double));
-				arr[*size - 1] = strtod(begin, &end);
-			}
+			arr = realloc(arr, ++*size * sizeof(double));
+			arr[*size - 1] = strtod(ptr, &ptr);
 		}
-		else if(i + 1 < len)
+		else if (*ptr == ';' && !(*ptr == '.' && !isdigit(*(ptr + 1))))
 		{
-			if (*(string + i) == ';')
-			{
-				begin = string + i + 1;
-			}
-			else if (*(string + i) != '.')
-			{
-				*size = 0;
-				free(arr);
-
-				return NULL;
-			}
+			ptr++;
 		}
-	}
+		else
+		{
+			*size = 0;
+			free(arr);
+
+			return NULL;
+		}
+	} while (ptr < string + len);
 
 	return arr;
 }
