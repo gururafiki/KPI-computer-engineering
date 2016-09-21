@@ -9,7 +9,7 @@ int main()
 
 	// 5
 	int size = 0;
-	double *arr = txt2double("57.28;54.025;60", &size);
+	double *arr = txt2double("3.14;8.16;10", &size);
 	for (int i = 0; i < size; i++)
 	{
 		printf("5 - arr[%d] = %.4f\n", i, arr[i]);
