@@ -16,6 +16,9 @@ int subseq(const char *string1, const char *string2)
 
 	int *matrix = (int*)calloc(((len1 + 1) * (len2 + 1)), sizeof(int));	// возможно, выделил немного больше памяти, чем нужно
 	
+	if (matrix == NULL)
+		return -1;
+
 	for (int i = 0; i < len1; i++)
 	{
 		for (int j = 0; j < len2; j++)
@@ -61,7 +64,9 @@ char* makepal(const char *string)
 
 	if (ispal(string) == '1')
 	{
-		substring = (char*)malloc((len + 1) * sizeof(char));
+		if ((substring = (char*)malloc((len + 1) * sizeof(char))) == NULL)
+			return NULL;
+
 		strcpy(substring, string);
 	}
 	else
@@ -76,7 +81,8 @@ char* makepal(const char *string)
 				break;
 		}
 
-		substring = (char*)malloc((len * 2 - equal + 1) * sizeof(char));
+		if ((substring = (char*)malloc((len * 2 - equal + 1) * sizeof(char))) == NULL)
+			return NULL;
 
 		strcpy(substring, string);
 
@@ -102,7 +108,9 @@ double* txt2double(const char *string, int *size)
 	{
 		if (isdigit(*ptr))
 		{
-			arr = realloc(arr, ++*size * sizeof(double));
+			if ((arr = realloc(arr, ++*size * sizeof(double))) == NULL)
+				return NULL;
+
 			arr[*size - 1] = strtod(ptr, &ptr);
 		}
 		else if (*ptr == ';' && !(*ptr == '.' && !isdigit(*(ptr + 1))))
