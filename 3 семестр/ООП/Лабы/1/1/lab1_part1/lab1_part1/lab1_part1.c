@@ -4,7 +4,7 @@ int substr(const char *string1, const char *string2)
 {
 	const char *sub = (char*)strstr(string1, string2);
 
-	return sub != NULL ? sub - string1 + 1 : -1;
+	return sub != NULL ? ((sub - string1) / sizeof(char) + 1) : -1;
 }
 
 int subseq(const char *string1, const char *string2)
@@ -73,12 +73,13 @@ char* makepal(const char *string)
 	{
 		int equal = 1;
 
-		for (int i = len - 1; i > 0; i--)
+		for (int i = 1; i < len; i++)
 		{
-			if (*(string + i) == *(string + i - 1))
-				equal++;
-			else
+			if (ispal(string + i))
+			{
+				equal = len - i - 1;
 				break;
+			}
 		}
 
 		if ((substring = (char*)malloc((len * 2 - equal + 1) * sizeof(char))) == NULL)

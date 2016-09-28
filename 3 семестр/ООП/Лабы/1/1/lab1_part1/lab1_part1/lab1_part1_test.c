@@ -5,7 +5,7 @@ int main()
 	printf("1 - %d\n", substr("Hello, World", "orl"));
 	printf("2 - %d\n", subseq("llasdlasdddd", "jllasdddd"));
 	printf("3 - %c\n", ispal("aagsaa"));
-	printf("4 - %s\n", makepal("aaa"));
+	printf("4 - %s\n", makepal("ass"));
 
 	// 5
 	int size = 0;

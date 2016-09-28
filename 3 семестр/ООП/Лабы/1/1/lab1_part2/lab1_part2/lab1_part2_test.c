@@ -21,14 +21,14 @@ int main()
 		argz_print(argz, argz_len);
 		// 5
 		printf("\n5:\n");
-		argz_insert(&argz, &argz_len, NULL, "new string");
+		argz_insert(&argz, &argz_len, argz, "new string");
 		argz_print(argz, argz_len);
 		// 6
 		//	argz_next()
 		//	используется в argz_print()
 		// 7
 		printf("\n7:\n");
-		argz_replace(&argz, &argz_len, "monty", "new");
+		argz_replace(&argz, &argz_len, "new string", "string2");
 		argz_print(argz, argz_len);
 	}
 	else printf("ERROR: Something went wrong! Check it out and try again.");
