@@ -1,0 +1,19 @@
+﻿  mem_dispatcher_test.c
+c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher_test.c(5): warning C4013: 'malloc' undefined; assuming extern returning int
+c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher_test.c(5): warning C4312: 'type cast': conversion from 'int' to 'mem_dispatcher *' of greater size
+c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher_test.c(15): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher_test.c(22): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher_test.c(31): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher_test.c(34): warning C4474: 'printf' : too many arguments passed for format string
+  c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher_test.c(34): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+  mem_dispatcher.c
+c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher.c(5): warning C4013: 'malloc' undefined; assuming extern returning int
+c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher.c(5): warning C4312: 'type cast': conversion from 'int' to 'mem_chunk *' of greater size
+c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher.c(28): warning C4312: 'type cast': conversion from 'int' to 'mem_chunk *' of greater size
+c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\ооп\лабы\2\1\lab2\mem_dispatcher.c(72): warning C4013: 'free' undefined; assuming extern returning int
+  Generating Code...
+  lab2.vcxproj -> C:\Users\choze\Documents\GitHub\KPI-computer-engineering\3 семестр\ООП\Лабы\2\1\x64\Debug\lab2.exe
+  lab2.vcxproj -> C:\Users\choze\Documents\GitHub\KPI-computer-engineering\3 семестр\ООП\Лабы\2\1\x64\Debug\lab2.pdb (Full PDB)

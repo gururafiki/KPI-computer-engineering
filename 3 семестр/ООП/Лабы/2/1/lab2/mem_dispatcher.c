@@ -16,8 +16,9 @@ int allocate(mem_dispatcher *md, int size)
 {
 	mem_chunk *min = md->first;
 	mem_chunk *buff = NULL;
+	mem_chunk *curr;
 	
-	for (mem_chunk *curr = md->first->next; NULL != curr; curr=curr->next)
+	for (curr = md->first->next; NULL != curr; curr=curr->next)
 	{
 		if (curr->status == FREE && curr->size <= min->size)
 		{
