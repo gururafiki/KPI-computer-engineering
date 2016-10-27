@@ -24,7 +24,8 @@ PUBLIC	_printf
 PUBLIC	?length@?$char_traits@D@std@@SAIPBD@Z		; std::char_traits<char>::length
 PUBLIC	?eq_int_type@?$char_traits@D@std@@SA_NABH0@Z	; std::char_traits<char>::eq_int_type
 PUBLIC	?eof@?$char_traits@D@std@@SAHXZ			; std::char_traits<char>::eof
-PUBLIC	?asm_func@@YAHXZ				; asm_func
+PUBLIC	?asm_func1@@YAHXZ				; asm_func1
+PUBLIC	?asm_func2@@YAHXZ				; asm_func2
 PUBLIC	?simple_func@@YAHXZ				; simple_func
 PUBLIC	_main
 PUBLIC	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
@@ -1264,7 +1265,7 @@ _TEXT	SEGMENT
 _time$ = -8						; size = 4
 _main	PROC						; COMDAT
 
-; 69   : {
+; 109  : {
 
   00000	55		 push	 ebp
   00001	8b ec		 mov	 ebp, esp
@@ -1279,7 +1280,7 @@ _main	PROC						; COMDAT
   00017	b8 cc cc cc cc	 mov	 eax, -858993460		; ccccccccH
   0001c	f3 ab		 rep stosd
 
-; 70   : 	int time = clock();
+; 110  : 	int time = clock();
 
   0001e	8b f4		 mov	 esi, esp
   00020	ff 15 00 00 00
@@ -1288,11 +1289,11 @@ _main	PROC						; COMDAT
   00028	e8 00 00 00 00	 call	 __RTC_CheckEsp
   0002d	89 45 f8	 mov	 DWORD PTR _time$[ebp], eax
 
-; 71   : 	simple_func();
+; 111  : 	simple_func();
 
   00030	e8 00 00 00 00	 call	 ?simple_func@@YAHXZ	; simple_func
 
-; 72   : 	std::cout << "Time without asm: " << clock() - time << "ms \n \n";
+; 112  : 	std::cout << "Time without asm: " << clock() - time << "ms \n \n";
 
   00035	68 00 00 00 00	 push	 OFFSET ??_C@_06GJJKBDMB@ms?5?6?5?6?$AA@
   0003a	8b f4		 mov	 esi, esp
@@ -1317,8 +1318,8 @@ _main	PROC						; COMDAT
   00072	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
   00077	83 c4 08	 add	 esp, 8
 
-; 73   : 
-; 74   : 	time = clock();
+; 113  : 
+; 114  : 	time = clock();
 
   0007a	8b f4		 mov	 esi, esp
   0007c	ff 15 00 00 00
@@ -1327,11 +1328,11 @@ _main	PROC						; COMDAT
   00084	e8 00 00 00 00	 call	 __RTC_CheckEsp
   00089	89 45 f8	 mov	 DWORD PTR _time$[ebp], eax
 
-; 75   : 	asm_func();
+; 115  : 	asm_func1();
 
-  0008c	e8 00 00 00 00	 call	 ?asm_func@@YAHXZ	; asm_func
+  0008c	e8 00 00 00 00	 call	 ?asm_func1@@YAHXZ	; asm_func1
 
-; 76   : 	std::cout << "Asm time: " << clock() - time << "ms \n \n";
+; 116  : 	std::cout << "Asm time: " << clock() - time << "ms \n \n";
 
   00091	68 00 00 00 00	 push	 OFFSET ??_C@_06GJJKBDMB@ms?5?6?5?6?$AA@
   00096	8b f4		 mov	 esi, esp
@@ -1356,23 +1357,62 @@ _main	PROC						; COMDAT
   000ce	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
   000d3	83 c4 08	 add	 esp, 8
 
-; 77   : 
-; 78   : 	return 0;
+; 117  : 
+; 118  : 	time = clock();
 
-  000d6	33 c0		 xor	 eax, eax
+  000d6	8b f4		 mov	 esi, esp
+  000d8	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__clock
+  000de	3b f4		 cmp	 esi, esp
+  000e0	e8 00 00 00 00	 call	 __RTC_CheckEsp
+  000e5	89 45 f8	 mov	 DWORD PTR _time$[ebp], eax
 
-; 79   : }
+; 119  : 	asm_func2();
 
-  000d8	5f		 pop	 edi
-  000d9	5e		 pop	 esi
-  000da	5b		 pop	 ebx
-  000db	81 c4 cc 00 00
+  000e8	e8 00 00 00 00	 call	 ?asm_func2@@YAHXZ	; asm_func2
+
+; 120  : 	std::cout << "Asm time: " << clock() - time << "ms \n \n";
+
+  000ed	68 00 00 00 00	 push	 OFFSET ??_C@_06GJJKBDMB@ms?5?6?5?6?$AA@
+  000f2	8b f4		 mov	 esi, esp
+  000f4	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp__clock
+  000fa	3b f4		 cmp	 esi, esp
+  000fc	e8 00 00 00 00	 call	 __RTC_CheckEsp
+  00101	2b 45 f8	 sub	 eax, DWORD PTR _time$[ebp]
+  00104	8b f4		 mov	 esi, esp
+  00106	50		 push	 eax
+  00107	68 00 00 00 00	 push	 OFFSET ??_C@_0L@CMGEOIIB@Asm?5time?3?5?$AA@
+  0010c	a1 00 00 00 00	 mov	 eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+  00111	50		 push	 eax
+  00112	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+  00117	83 c4 08	 add	 esp, 8
+  0011a	8b c8		 mov	 ecx, eax
+  0011c	ff 15 00 00 00
+	00		 call	 DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@J@Z
+  00122	3b f4		 cmp	 esi, esp
+  00124	e8 00 00 00 00	 call	 __RTC_CheckEsp
+  00129	50		 push	 eax
+  0012a	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+  0012f	83 c4 08	 add	 esp, 8
+
+; 121  : 
+; 122  : 	return 0;
+
+  00132	33 c0		 xor	 eax, eax
+
+; 123  : }
+
+  00134	5f		 pop	 edi
+  00135	5e		 pop	 esi
+  00136	5b		 pop	 ebx
+  00137	81 c4 cc 00 00
 	00		 add	 esp, 204		; 000000ccH
-  000e1	3b ec		 cmp	 ebp, esp
-  000e3	e8 00 00 00 00	 call	 __RTC_CheckEsp
-  000e8	8b e5		 mov	 esp, ebp
-  000ea	5d		 pop	 ebp
-  000eb	c3		 ret	 0
+  0013d	3b ec		 cmp	 ebp, esp
+  0013f	e8 00 00 00 00	 call	 __RTC_CheckEsp
+  00144	8b e5		 mov	 esp, ebp
+  00146	5d		 pop	 ebp
+  00147	c3		 ret	 0
 _main	ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
@@ -1383,7 +1423,7 @@ _j$ = -20						; size = 4
 _i$ = -8						; size = 4
 ?simple_func@@YAHXZ PROC				; simple_func, COMDAT
 
-; 42   : {
+; 82   : {
 
   00000	55		 push	 ebp
   00001	8b ec		 mov	 ebp, esp
@@ -1398,53 +1438,53 @@ _i$ = -8						; size = 4
   00017	b8 cc cc cc cc	 mov	 eax, -858993460		; ccccccccH
   0001c	f3 ab		 rep stosd
 
-; 43   : 	int i, j;
-; 44   : 	k = 1;
+; 83   : 	int i, j;
+; 84   : 	k = 1;
 
   0001e	c7 05 00 00 00
 	00 01 00 00 00	 mov	 DWORD PTR ?k@@3HA, 1	; k
 
-; 45   : 	i = 0;
+; 85   : 	i = 0;
 
   00028	c7 45 f8 00 00
 	00 00		 mov	 DWORD PTR _i$[ebp], 0
 $LN4@simple_fun:
 
-; 46   : 
-; 47   : 	do
-; 48   : 	{
-; 49   : 		j = i + k * 2;
+; 86   : 
+; 87   : 	do
+; 88   : 	{
+; 89   : 		j = i + k * 2;
 
   0002f	a1 00 00 00 00	 mov	 eax, DWORD PTR ?k@@3HA	; k
   00034	8b 4d f8	 mov	 ecx, DWORD PTR _i$[ebp]
   00037	8d 14 41	 lea	 edx, DWORD PTR [ecx+eax*2]
   0003a	89 55 ec	 mov	 DWORD PTR _j$[ebp], edx
 
-; 50   : 		if (j > 11)
+; 90   : 		if (j > 11)
 
   0003d	83 7d ec 0b	 cmp	 DWORD PTR _j$[ebp], 11	; 0000000bH
   00041	7e 0f		 jle	 SHORT $LN8@simple_fun
 
-; 51   : 			A[i] = j;
+; 91   : 			A[i] = j;
 
   00043	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
   00046	8b 4d ec	 mov	 ecx, DWORD PTR _j$[ebp]
   00049	89 0c 85 00 00
 	00 00		 mov	 DWORD PTR ?A@@3PAHA[eax*4], ecx
 
-; 52   : 		else
+; 92   : 		else
 
   00050	eb 1d		 jmp	 SHORT $LN9@simple_fun
 $LN8@simple_fun:
 
-; 53   : 		{
-; 54   : 			k += 1;
+; 93   : 		{
+; 94   : 			k += 1;
 
   00052	a1 00 00 00 00	 mov	 eax, DWORD PTR ?k@@3HA	; k
   00057	83 c0 01	 add	 eax, 1
   0005a	a3 00 00 00 00	 mov	 DWORD PTR ?k@@3HA, eax	; k
 
-; 55   : 			A[i] = k;
+; 95   : 			A[i] = k;
 
   0005f	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
   00062	8b 0d 00 00 00
@@ -1453,21 +1493,21 @@ $LN8@simple_fun:
 	00 00		 mov	 DWORD PTR ?A@@3PAHA[eax*4], ecx
 $LN9@simple_fun:
 
-; 56   : 		}
-; 57   : 
-; 58   : 		i++;
+; 96   : 		}
+; 97   : 
+; 98   : 		i++;
 
   0006f	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
   00072	83 c0 01	 add	 eax, 1
   00075	89 45 f8	 mov	 DWORD PTR _i$[ebp], eax
 
-; 59   : 	} while (i < 8);
+; 99   : 	} while (i < 8);
 
   00078	83 7d f8 08	 cmp	 DWORD PTR _i$[ebp], 8
   0007c	7c b1		 jl	 SHORT $LN4@simple_fun
 
-; 60   : 
-; 61   : 	for (i = 0; i < 8; i++)
+; 100  : 
+; 101  : 	for (i = 0; i < 8; i++)
 
   0007e	c7 45 f8 00 00
 	00 00		 mov	 DWORD PTR _i$[ebp], 0
@@ -1480,7 +1520,7 @@ $LN7@simple_fun:
   00090	83 7d f8 08	 cmp	 DWORD PTR _i$[ebp], 8
   00094	7d 1a		 jge	 SHORT $LN6@simple_fun
 
-; 62   : 		printf("%d ", A[i]);
+; 102  : 		printf("%d ", A[i]);
 
   00096	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
   00099	8b 0c 85 00 00
@@ -1492,18 +1532,18 @@ $LN7@simple_fun:
   000ae	eb d7		 jmp	 SHORT $LN5@simple_fun
 $LN6@simple_fun:
 
-; 63   : 	printf("\n");
+; 103  : 	printf("\n");
 
   000b0	68 00 00 00 00	 push	 OFFSET ??_C@_01EEMJAFIK@?6?$AA@
   000b5	e8 00 00 00 00	 call	 _printf
   000ba	83 c4 04	 add	 esp, 4
 
-; 64   : 
-; 65   : 	return 0;
+; 104  : 
+; 105  : 	return 0;
 
   000bd	33 c0		 xor	 eax, eax
 
-; 66   : }
+; 106  : }
 
   000bf	5f		 pop	 edi
   000c0	5e		 pop	 esi
@@ -1519,10 +1559,193 @@ $LN6@simple_fun:
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\системное программирование\лабы\2\вариант 1\lab2\main.cpp
-;	COMDAT ?asm_func@@YAHXZ
+;	COMDAT ?asm_func2@@YAHXZ
+_TEXT	SEGMENT
+_i$1 = -32						; size = 4
+_j$ = -20						; size = 4
+_i$ = -8						; size = 4
+?asm_func2@@YAHXZ PROC					; asm_func2, COMDAT
+
+; 41   : {
+
+  00000	55		 push	 ebp
+  00001	8b ec		 mov	 ebp, esp
+  00003	81 ec e4 00 00
+	00		 sub	 esp, 228		; 000000e4H
+  00009	53		 push	 ebx
+  0000a	56		 push	 esi
+  0000b	57		 push	 edi
+  0000c	8d bd 1c ff ff
+	ff		 lea	 edi, DWORD PTR [ebp-228]
+  00012	b9 39 00 00 00	 mov	 ecx, 57			; 00000039H
+  00017	b8 cc cc cc cc	 mov	 eax, -858993460		; ccccccccH
+  0001c	f3 ab		 rep stosd
+
+; 42   : 	int i, j;
+; 43   : 
+; 44   : 	_asm
+; 45   : 	{
+; 46   : 		mov k, 1
+
+  0001e	c7 05 00 00 00
+	00 01 00 00 00	 mov	 DWORD PTR ?k@@3HA, 1	; k
+
+; 47   : 		mov i, 0
+
+  00028	c7 45 f8 00 00
+	00 00		 mov	 DWORD PTR _i$[ebp], 0
+$repeat$6:
+
+; 48   : 		repeat:
+; 49   : 		mov eax, k
+
+  0002f	a1 00 00 00 00	 mov	 eax, DWORD PTR ?k@@3HA	; k
+
+; 50   : 		mov ecx, DWORD PTR i
+
+  00034	8b 4d f8	 mov	 ecx, DWORD PTR _i$[ebp]
+
+; 51   : 		lea edx, DWORD PTR [ECX+eax*2]
+
+  00037	8d 14 41	 lea	 edx, DWORD PTR [ecx+eax*2]
+
+; 52   : 		mov	DWORD PTR j, edx
+
+  0003a	89 55 ec	 mov	 DWORD PTR _j$[ebp], edx
+
+; 53   : 		cmp DWORD PTR j, 11
+
+  0003d	83 7d ec 0b	 cmp	 DWORD PTR _j$[ebp], 11	; 0000000bH
+
+; 54   : 		jle SHORT if_not
+
+  00041	7e 0f		 jle	 SHORT $if_not$7
+
+; 55   : 		mov EAX, DWORD PTR j
+
+  00043	8b 45 ec	 mov	 eax, DWORD PTR _j$[ebp]
+
+; 56   : 		mov ECX, DWORD PTR i
+
+  00046	8b 4d f8	 mov	 ecx, DWORD PTR _i$[ebp]
+
+; 57   : 		mov DWORD PTR A[EAX*4], ECX
+
+  00049	89 0c 85 00 00
+	00 00		 mov	 DWORD PTR ?A@@3PAHA[eax*4], ecx
+
+; 58   : 		jmp SHORT if_end
+
+  00050	eb 1d		 jmp	 SHORT $if_end$8
+$if_not$7:
+
+; 59   : 		if_not:
+; 60   : 		mov EAX, DWORD PTR k
+
+  00052	a1 00 00 00 00	 mov	 eax, DWORD PTR ?k@@3HA	; k
+
+; 61   : 		add EAX, 1
+
+  00057	83 c0 01	 add	 eax, 1
+
+; 62   : 		mov DWORD PTR k, EAX
+
+  0005a	a3 00 00 00 00	 mov	 DWORD PTR ?k@@3HA, eax	; k
+
+; 63   : 		mov EAX, DWORD PTR i
+
+  0005f	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
+
+; 64   : 		mov ECX, DWORD PTR k
+
+  00062	8b 0d 00 00 00
+	00		 mov	 ecx, DWORD PTR ?k@@3HA	; k
+
+; 65   : 		mov DWORD PTR A[EAX*4], ECX
+
+  00068	89 0c 85 00 00
+	00 00		 mov	 DWORD PTR ?A@@3PAHA[eax*4], ecx
+$if_end$8:
+
+; 66   : 		if_end:
+; 67   : 		mov EAX, DWORD PTR i
+
+  0006f	8b 45 f8	 mov	 eax, DWORD PTR _i$[ebp]
+
+; 68   : 		add EAX, 1
+
+  00072	83 c0 01	 add	 eax, 1
+
+; 69   : 		mov DWORD PTR i, EAX
+
+  00075	89 45 f8	 mov	 DWORD PTR _i$[ebp], eax
+
+; 70   : 		cmp DWORD PTR i, 8
+
+  00078	83 7d f8 08	 cmp	 DWORD PTR _i$[ebp], 8
+
+; 71   : 		jl SHORT repeat
+
+  0007c	7c b1		 jl	 SHORT $repeat$6
+
+; 72   : 	}
+; 73   : 
+; 74   : 	for (int i = 0; i < 8; i++)
+
+  0007e	c7 45 e0 00 00
+	00 00		 mov	 DWORD PTR _i$1[ebp], 0
+  00085	eb 09		 jmp	 SHORT $LN4@asm_func2
+$LN2@asm_func2:
+  00087	8b 45 e0	 mov	 eax, DWORD PTR _i$1[ebp]
+  0008a	83 c0 01	 add	 eax, 1
+  0008d	89 45 e0	 mov	 DWORD PTR _i$1[ebp], eax
+$LN4@asm_func2:
+  00090	83 7d e0 08	 cmp	 DWORD PTR _i$1[ebp], 8
+  00094	7d 1a		 jge	 SHORT $LN3@asm_func2
+
+; 75   : 		printf("%d ", A[i]);
+
+  00096	8b 45 e0	 mov	 eax, DWORD PTR _i$1[ebp]
+  00099	8b 0c 85 00 00
+	00 00		 mov	 ecx, DWORD PTR ?A@@3PAHA[eax*4]
+  000a0	51		 push	 ecx
+  000a1	68 00 00 00 00	 push	 OFFSET ??_C@_03JDANDILB@?$CFd?5?$AA@
+  000a6	e8 00 00 00 00	 call	 _printf
+  000ab	83 c4 08	 add	 esp, 8
+  000ae	eb d7		 jmp	 SHORT $LN2@asm_func2
+$LN3@asm_func2:
+
+; 76   : 	printf("\n");
+
+  000b0	68 00 00 00 00	 push	 OFFSET ??_C@_01EEMJAFIK@?6?$AA@
+  000b5	e8 00 00 00 00	 call	 _printf
+  000ba	83 c4 04	 add	 esp, 4
+
+; 77   : 
+; 78   : 	return 0;
+
+  000bd	33 c0		 xor	 eax, eax
+
+; 79   : }
+
+  000bf	5f		 pop	 edi
+  000c0	5e		 pop	 esi
+  000c1	5b		 pop	 ebx
+  000c2	81 c4 e4 00 00
+	00		 add	 esp, 228		; 000000e4H
+  000c8	3b ec		 cmp	 ebp, esp
+  000ca	e8 00 00 00 00	 call	 __RTC_CheckEsp
+  000cf	8b e5		 mov	 esp, ebp
+  000d1	5d		 pop	 ebp
+  000d2	c3		 ret	 0
+?asm_func2@@YAHXZ ENDP					; asm_func2
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File c:\users\choze\documents\github\kpi-computer-engineering\3 семестр\системное программирование\лабы\2\вариант 1\lab2\main.cpp
+;	COMDAT ?asm_func1@@YAHXZ
 _TEXT	SEGMENT
 _i$1 = -8						; size = 4
-?asm_func@@YAHXZ PROC					; asm_func, COMDAT
+?asm_func1@@YAHXZ PROC					; asm_func1, COMDAT
 
 ; 9    : {
 
@@ -1576,104 +1799,95 @@ $repeat$6:
 
 ; 20   : 		jbe SHORT if_not
 
-  00040	76 0e		 jbe	 SHORT $if_not$7
+  00040	76 02		 jbe	 SHORT $if_not$7
 
-; 21   : 		mov ECX, k
+; 21   : 		jmp if_end
 
-  00042	8b 0d 00 00 00
-	00		 mov	 ecx, DWORD PTR ?k@@3HA	; k
-
-; 22   : 		mov DWORD PTR A[EAX], ECX
-
-  00048	89 88 00 00 00
-	00		 mov	 DWORD PTR ?A@@3PAHA[eax], ecx
-
-; 23   : 		jmp if_end
-
-  0004e	eb 12		 jmp	 SHORT $if_end$8
+  00042	eb 06		 jmp	 SHORT $if_end$8
 $if_not$7:
 
-; 24   : 		if_not:
-; 25   : 		inc k
+; 22   : 		if_not:
+; 23   : 		inc k
 
-  00050	ff 05 00 00 00
+  00044	ff 05 00 00 00
 	00		 inc	 DWORD PTR ?k@@3HA	; k
-
-; 26   : 		mov ECX, k
-
-  00056	8b 0d 00 00 00
-	00		 mov	 ecx, DWORD PTR ?k@@3HA	; k
-
-; 27   : 		mov DWORD PTR A[EAX], ECX
-
-  0005c	89 88 00 00 00
-	00		 mov	 DWORD PTR ?A@@3PAHA[eax], ecx
 $if_end$8:
 
-; 28   : 		if_end:
-; 29   : 		add EAX, 4
+; 24   : 		if_end:
+; 25   : 		mov ECX, k
 
-  00062	83 c0 04	 add	 eax, 4
+  0004a	8b 0d 00 00 00
+	00		 mov	 ecx, DWORD PTR ?k@@3HA	; k
 
-; 30   : 		cmp EAX, 8
+; 26   : 		mov DWORD PTR A[EAX], ECX
 
-  00065	83 f8 08	 cmp	 eax, 8
+  00050	89 88 00 00 00
+	00		 mov	 DWORD PTR ?A@@3PAHA[eax], ecx
 
-; 31   : 		jb SHORT repeat
+; 27   : 		
+; 28   : 		add EAX, 4
 
-  00068	72 c3		 jb	 SHORT $repeat$6
+  00056	83 c0 04	 add	 eax, 4
 
-; 32   : 	}
-; 33   : 
-; 34   : 	for (int i = 0; i < 8; i++)
+; 29   : 		cmp EAX, 8
 
-  0006a	c7 45 f8 00 00
+  00059	83 f8 08	 cmp	 eax, 8
+
+; 30   : 		jb SHORT repeat
+
+  0005c	72 cf		 jb	 SHORT $repeat$6
+
+; 31   : 	}
+; 32   : 
+; 33   : 	for (int i = 0; i < 8; i++)
+
+  0005e	c7 45 f8 00 00
 	00 00		 mov	 DWORD PTR _i$1[ebp], 0
-  00071	eb 09		 jmp	 SHORT $LN4@asm_func
-$LN2@asm_func:
-  00073	8b 45 f8	 mov	 eax, DWORD PTR _i$1[ebp]
-  00076	83 c0 01	 add	 eax, 1
-  00079	89 45 f8	 mov	 DWORD PTR _i$1[ebp], eax
-$LN4@asm_func:
-  0007c	83 7d f8 08	 cmp	 DWORD PTR _i$1[ebp], 8
-  00080	7d 1a		 jge	 SHORT $LN3@asm_func
+  00065	eb 09		 jmp	 SHORT $LN4@asm_func1
+$LN2@asm_func1:
+  00067	8b 45 f8	 mov	 eax, DWORD PTR _i$1[ebp]
+  0006a	83 c0 01	 add	 eax, 1
+  0006d	89 45 f8	 mov	 DWORD PTR _i$1[ebp], eax
+$LN4@asm_func1:
+  00070	83 7d f8 08	 cmp	 DWORD PTR _i$1[ebp], 8
+  00074	7d 1a		 jge	 SHORT $LN3@asm_func1
 
-; 35   : 		printf("%d ", A[i]);
+; 34   : 		printf("%d ", A[i]);
 
-  00082	8b 45 f8	 mov	 eax, DWORD PTR _i$1[ebp]
-  00085	8b 0c 85 00 00
+  00076	8b 45 f8	 mov	 eax, DWORD PTR _i$1[ebp]
+  00079	8b 0c 85 00 00
 	00 00		 mov	 ecx, DWORD PTR ?A@@3PAHA[eax*4]
-  0008c	51		 push	 ecx
-  0008d	68 00 00 00 00	 push	 OFFSET ??_C@_03JDANDILB@?$CFd?5?$AA@
-  00092	e8 00 00 00 00	 call	 _printf
-  00097	83 c4 08	 add	 esp, 8
-  0009a	eb d7		 jmp	 SHORT $LN2@asm_func
-$LN3@asm_func:
+  00080	51		 push	 ecx
+  00081	68 00 00 00 00	 push	 OFFSET ??_C@_03JDANDILB@?$CFd?5?$AA@
+  00086	e8 00 00 00 00	 call	 _printf
+  0008b	83 c4 08	 add	 esp, 8
+  0008e	eb d7		 jmp	 SHORT $LN2@asm_func1
+$LN3@asm_func1:
 
-; 36   : 	printf("\n");
+; 35   : 	printf("\n");
 
-  0009c	68 00 00 00 00	 push	 OFFSET ??_C@_01EEMJAFIK@?6?$AA@
-  000a1	e8 00 00 00 00	 call	 _printf
-  000a6	83 c4 04	 add	 esp, 4
+  00090	68 00 00 00 00	 push	 OFFSET ??_C@_01EEMJAFIK@?6?$AA@
+  00095	e8 00 00 00 00	 call	 _printf
+  0009a	83 c4 04	 add	 esp, 4
 
-; 37   : 
-; 38   : 	return 0;
+; 36   : 
+; 37   : 	return 0;
 
-  000a9	33 c0		 xor	 eax, eax
+  0009d	33 c0		 xor	 eax, eax
 
-; 39   : }
+; 38   : }
 
-  000ab	5f		 pop	 edi
-  000ac	5e		 pop	 esi
-  000ad	5b		 pop	 ebx
-  000ae	81 c4 cc 00 00
+  0009f	5f		 pop	 edi
+  000a0	5e		 pop	 esi
+  000a1	5b		 pop	 ebx
+  000a2	81 c4 cc 00 00
 	00		 add	 esp, 204		; 000000ccH
-  000b4	3b ec		 cmp	 ebp, esp
-  000b6	e8 00 00 00 00	 call	 __RTC_CheckEsp
-  000bb	8b e5		 mov	 esp, ebp
-  000bd	5d		 pop	 ebp
-  000be	c3		 ret	 0
-?asm_func@@YAHXZ ENDP					; asm_func
+  000a8	3b ec		 cmp	 ebp, esp
+  000aa	e8 00 00 00 00	 call	 __RTC_CheckEsp
+  000af	8b e5		 mov	 esp, ebp
+  000b1	5d		 pop	 ebp
+  000b2	c3		 ret	 0
+?asm_func1@@YAHXZ ENDP					; asm_func1
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File c:\program files (x86)\microsoft visual studio 14.0\vc\include\iosfwd
@@ -2030,6 +2244,8 @@ ___formal$ = 8						; size = 4
 ___formal$ = 12						; size = 4
 ?__empty_global_delete@@YAXPAXI@Z PROC			; __empty_global_delete, COMDAT
 
+; 124  : }
+
   00000	55		 push	 ebp
   00001	8b ec		 mov	 ebp, esp
   00003	81 ec c0 00 00
@@ -2057,7 +2273,7 @@ _TEXT	SEGMENT
 ___formal$ = 8						; size = 4
 ?__empty_global_delete@@YAXPAX@Z PROC			; __empty_global_delete, COMDAT
 
-; 80   : }
+; 124  : }
 
   00000	55		 push	 ebp
   00001	8b ec		 mov	 ebp, esp
