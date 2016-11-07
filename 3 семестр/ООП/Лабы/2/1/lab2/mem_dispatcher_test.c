@@ -40,7 +40,7 @@ int main()
 				show_memory_map(md);
 			}; break;
 			case 4: defragment(md); break;
-			case 5: return;
+			case 5: return 0;
 			default: printf("Wrong command\n");
 		}
 
