@@ -31,7 +31,7 @@ int y_size_cmp(const void *val1, const void *val2);
 int optr_cmp(const void *val1, const void *val2);
 
 int make_index(char *path_dba, char *field_name); // 3
-//RECORD_SET *get_recs_by_index(char *dba, char *indx_field); // 4
-//void reindex(char *dba); // 5
-//int del_scan(char *dba, int n); // 6
-// 7
+RECORD_SET *get_recs_by_index(char *path_dba, char *indx_field); // 4
+void reindex(char *path_dba); // 5
+int del_scan(char *path_dba, int n); // 6
+int scanners_by_maxprice(char *path_dba, char *path_txt, float price); // 7

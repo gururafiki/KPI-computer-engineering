@@ -1,19 +1,3 @@
-﻿  scanner.c
-c:\users\choze\documents\visual studio 2015\projects\lab3\lab3\scanner.c(41): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
-c:\users\choze\documents\visual studio 2015\projects\lab3\lab3\scanner.c(42): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
-c:\users\choze\documents\visual studio 2015\projects\lab3\lab3\scanner.c(54): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-c:\users\choze\documents\visual studio 2015\projects\lab3\lab3\scanner.c(74): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
-c:\users\choze\documents\visual studio 2015\projects\lab3\lab3\scanner.c(86): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(346): note: see declaration of 'strncpy'
-c:\users\choze\documents\visual studio 2015\projects\lab3\lab3\scanner.c(89): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: see declaration of 'strcpy'
-c:\users\choze\documents\visual studio 2015\projects\lab3\lab3\scanner.c(90): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: see declaration of 'strcpy'
-c:\users\choze\documents\visual studio 2015\projects\lab3\lab3\scanner.c(92): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
-  lab3.vcxproj -> C:\Users\choze\Documents\Visual Studio 2015\Projects\lab3\Debug\lab3.exe
-  lab3.vcxproj -> C:\Users\choze\Documents\Visual Studio 2015\Projects\lab3\Debug\lab3.pdb (Full PDB)
+﻿  scanner_db.c
+  lab3.vcxproj -> C:\Users\choze\Documents\GitHub\KPI-computer-engineering\3 семестр\ООП\Лабы\3\1\Debug\lab3.exe
+  lab3.vcxproj -> C:\Users\choze\Documents\GitHub\KPI-computer-engineering\3 семестр\ООП\Лабы\3\1\Debug\lab3.pdb (Full PDB)
