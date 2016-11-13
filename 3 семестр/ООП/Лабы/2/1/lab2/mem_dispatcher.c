@@ -87,13 +87,24 @@ void defragment(mem_dispatcher *md)
 	
 	while (NULL != curr)
 	{
-		if (end == md->first && end->status != curr->status)
+		if (end->status != curr->status)
 		{
-			if (curr->status == FREE)
+			if (FREE == curr->status)
 			{
-				md->first = curr->next;
-				curr->next = md->first;
-				md->first = curr;
+				if (FREE == md->first->status)
+				{
+					md->first->size += curr->size;
+					end->next = curr->next;
+					free(curr);
+					curr = end;
+				}
+				else
+				{
+					end->next = curr->next;
+					curr->next = md->first;
+					md->first = curr;
+					curr = end;
+				}
 			}
 			else
 			{
@@ -115,8 +126,8 @@ void defragment(mem_dispatcher *md)
 		}
 		else
 		{
-			curr = curr->next;
 			end = curr;
+			curr = curr->next;
 		}
 	}
 };

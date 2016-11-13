@@ -223,7 +223,7 @@ RECORD_SET *get_recs_by_index(char *path_dba, char *indx_field)
 		printf("open file error\n");
 		return NULL;
 	}
-	if ((set = (RECORD_SET*)malloc(sizeof(int) + sizeof(RECORD_SET*))) == NULL)
+	if ((set = (RECORD_SET*)malloc(sizeof(int) + sizeof(SCAN_INFO*))) == NULL)
 	{
 		fclose(dba);
 		fclose(idx);
